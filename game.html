@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" onclick="jump()">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome game</title>
+
+    <link rel="stylesheet" href="gamestyle.css">
+    <script src="game.js"></script>
+</head>
+<body>
+    <p id="pdisplay">Click screen to jump.</p>
+   
+    <div id="game">
+
+        <div id="character"></div>
+        <div id="block"></div>
+        
+    </div>
+    <br><br>
+  
+
+  <script>
+var block = document.getElementById('block');
+var character = document.getElementById('character');
+//var button = document.getElementById('buttonjump');
+
+function jump() {
+   // button.addEventListener('click', ()=>{
+       
+        if(character.classList != "animate"){
+            character.classList.add("animate");
+        }
+       
+        setTimeout(()=>{
+            character.classList.remove("animate");
+    
+        }, 500);
+  //  })
+}
+var checkDead = setInterval(()=>{
+    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+
+    var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+    if(blockLeft > 0 && blockLeft < 20 && characterTop > 130) {
+        block.style.animation = "none";
+        block.style.display = "none";
+        alert("You lose! Game over.");
+    }
+}, 10);
+
+function start() {
+    location.replace('game.html');
+}
+
+  </script>
+ <button onclick="start()" id="buttonjump">Start Game</button>
+</body>
+</html>
